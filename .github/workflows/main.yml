@@ -51,7 +51,8 @@ jobs:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }} # Add your Snyk token to GitHub Secrets
         run: snyk auth $SNYK_TOKEN
 
-      
+      - name: Change directory
+        run: cd "/home/runner/work/Altoro-Mutual/AltoroJ 3.1.1"
 
       - name: Run Snyk test
         run: snyk test 
