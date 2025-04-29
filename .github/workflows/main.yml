@@ -1,4 +1,4 @@
-name: GitLeaks Scan
+name: Snyk Scan
 # testing sample DevOps with Git workflow
 on:
   push:
@@ -10,49 +10,14 @@ on:
  
 
 jobs:
-  gitleaks:
-    runs-on: ubuntu-latest
-
- 
-
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-
- 
-
-    - name: Install GitLeaks
-      run: |
-        wget -q -O gitleaks.tar.gz https://github.com/gitleaks/gitleaks/releases/download/v8.18.0/gitleaks_8.18.0_linux_x64.tar.gz
-        ls -l
-        tar -xzvf gitleaks.tar.gz
-        chmod +x gitleaks
-        sudo mv gitleaks /usr/local/bin/
-
- 
-
-    - name: Run GitLeaks
-      run: |
-        gitleaks detect --redact
-
   snyk:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Set up JDK 17
-        uses: actions/setup-java@v1
-        with:
-         java-version: 17
-
-      - name: Set up Node 14
-        uses: actions/setup-node@v3
-        with:
-         node-version: 14
 
 
-     
       - name: Authenticate Snyk now
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }} # Add your Snyk token to GitHub Secrets
