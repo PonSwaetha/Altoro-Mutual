@@ -42,10 +42,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '14' # Change to your Node.js version
 
       - name: Install Snyk CLI
         run: npm install -g snyk
@@ -55,8 +51,7 @@ jobs:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }} # Add your Snyk token to GitHub Secrets
         run: snyk auth $SNYK_TOKEN
 
-      - name: change directory
-        run: cd "Pon Swaetha/Altoro-Mutual/AltoroJ 3.1.1"
+      
 
       - name: Run Snyk test
         run: snyk test 
